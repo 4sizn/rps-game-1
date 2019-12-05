@@ -55,13 +55,24 @@ function assert(condition, message) {
   }
 }
 
+//inGame
 function rpsGame({ state }) {
-  const start = () => {
+  const play = () => {
     const result = game([makePlayer(HAND.ROCK), [makeComputers(1)]]);
     return { ...state, result };
   };
+
+  const idle = () => {
+    function* process() {
+      yield console.log("state 상태에 따른 결과판 표시");
+    }
+
+    return process.call(this);
+  };
+
   return {
-    start
+    play,
+    idle
   };
 }
 
@@ -118,6 +129,7 @@ const coroutine = function(generatorFunction) {
   }
 };
 
+//Game Machine
 class Machine {
   constructor(game) {
     this._game = game;
@@ -138,7 +150,7 @@ class Machine {
       this._isPause = false;
       this.startLoop();
     });
-    // return this._game.start();
+    // return this._game.play();
   }
 
   startLoop() {
@@ -146,7 +158,19 @@ class Machine {
   }
 
   loop() {
-    return function* loop() {};
+    const game = this._game;
+    return function* loop() {
+      let done = false;
+      let idle = game.idle();
+      while (!done) {
+        const next = idle.next();
+        done = next.done;
+        yield next.value;
+      }
+
+      idle = game.idle();
+      done = false;
+    };
   }
 
   end() {}
