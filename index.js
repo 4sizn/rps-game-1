@@ -57,6 +57,20 @@ function assert(condition, message) {
   }
 }
 
+const pause = global => {
+  return (global.state = {
+    ...global.state,
+    isPause: true
+  });
+};
+
+const play = global => {
+  return (global.state = {
+    ...global.state,
+    isPause: false
+  });
+};
+
 (function gameStart() {
   const global = {
     state: { isPause: false, coin: 0, key: null }
@@ -83,13 +97,19 @@ function assert(condition, message) {
 
   process.stdin.setRawMode(true);
   process.stdin.resume();
-
+  play(global);
   const timer = setInterval(() => {
-    clear();
-    console.log(global.state);
-    console.log(
-      [HAND.ROCK, HAND.PAPER, HAND.SCISSORS][Math.floor(Math.random() * 3)]
-    );
-    console.log("[주먹 : 0, 보 : 1, 가위, 2] : ");
+    if (!global.state.isPause) {
+      clear();
+      console.log(global.state);
+      console.log(
+        [HAND.ROCK, HAND.PAPER, HAND.SCISSORS][Math.floor(Math.random() * 3)]
+      );
+      console.log("[주먹 : 0, 보 : 1, 가위, 2] : ");
+      pause(global);
+      console.log(
+        JSON.stringify(game([makePlayer(global.state.key), makeComputers(1)]))
+      );
+    }
   }, 100);
 })();
