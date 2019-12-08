@@ -36,13 +36,12 @@ const getGameResult = (myHand, otherHand) => {
  *
  * @param  {{hand:string, id:int}[]} players
  */
+
 const game = players => {
   const pHands = [...new Set(players.map(p => p.hand))];
   if (pHands.length !== 2) return { draw: true };
-
   const winned =
     getGameResult(pHands[0], pHands[1]) === RESULT.WIN ? pHands[0] : pHands[1];
-
   return { winners: players.filter(p => p.hand === winned) };
 };
 
@@ -72,6 +71,7 @@ const play = global => {
 };
 
 (function gameStart() {
+  let cb = null;
   const global = {
     state: { isPause: false, coin: 0, key: null }
   };
@@ -86,11 +86,16 @@ const play = global => {
         ...global.state,
         coin: global.state.coin + 1
       };
+      cb = null;
+      play(global);
     }
     if ([HAND.ROCK, HAND.PAPER, HAND.SCISSORS].includes(Number(ch))) {
       global.state = {
         ...global.state,
         key: Number(ch)
+      };
+      cb = () => {
+        return game([makePlayer(global.state.key), makeComputers(1)]);
       };
     }
   });
@@ -98,6 +103,7 @@ const play = global => {
   process.stdin.setRawMode(true);
   process.stdin.resume();
   play(global);
+
   const timer = setInterval(() => {
     if (!global.state.isPause) {
       clear();
@@ -106,10 +112,13 @@ const play = global => {
         [HAND.ROCK, HAND.PAPER, HAND.SCISSORS][Math.floor(Math.random() * 3)]
       );
       console.log("[주먹 : 0, 보 : 1, 가위, 2] : ");
-      pause(global);
-      console.log(
-        JSON.stringify(game([makePlayer(global.state.key), makeComputers(1)]))
-      );
+      if (cb) {
+        const result = cb();
+        const { winners } = result;
+
+        console.log(getGameResult(global.state.key, winners[0][0].hand));
+        pause(global);
+      }
     }
   }, 100);
 })();
