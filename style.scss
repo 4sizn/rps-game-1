@@ -1,3 +1,32 @@
 body {
-  background-color: grey;
+  font-family: "VT323", monospace;
+  background-color: black;
+  color: white;
+}
+
+.container {
+  max-width: 970px;
+  margin: 0 auto;
+}
+.game {
+  position: relative;
+}
+
+.machine {
+  width: 100%;
+  position: absolute;
+  height: 22rem;
+  background-image: url(./res/assets/m/imgs/gamebase.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  @media (min-width: 500px) {
+  }
+  .game-machine__head {
+  }
+  .game-machine__body {
+  }
+  .game-machine__foot {
+  }
+  //   background-image: url(./res/assets/m/imgs/gamebase.jpg);
 }
