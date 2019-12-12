@@ -1,31 +1,75 @@
+html {
+  font-size: 20px;
+}
+
 body {
+  font-size: 1rem;
   font-family: "VT323", monospace;
-  background-color: black;
+  background-color: rgb(94, 66, 66);
   color: white;
 }
 
 .container {
-  max-width: 970px;
   margin: 0 auto;
+  max-width: 650px;
 }
 .game {
   position: relative;
+  width: 100%;
 }
 
 .machine {
-  width: 100%;
+  width: 31.525rem;
   position: absolute;
-  height: 22rem;
+  height: 43rem;
   background-image: url(./res/assets/m/imgs/gamebase.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
-
-  @media (min-width: 500px) {
-  }
   .game-machine__head {
   }
   .game-machine__body {
   }
   .game-machine__foot {
+  }
+
+  .result {
+    .win {
+      .left {
+        background: url(./res/assets/sprites/s_result_ko.png) -8.6125rem -9.9775rem;
+        background-size: 35.23rem 20.0525rem;
+        position: absolute;
+        left: 3.4125rem;
+        top: 3.6075rem;
+        width: 8.5475rem;
+        height: 10.01rem;
+      }
+      .right {
+        background: url(./res/assets/sprites/s_result_ko.png) -8.6125rem -0rem;
+        background-size: 35.23rem 20.0525rem;
+        position: absolute;
+        left: 19.2725rem;
+        top: 3.6075rem;
+        width: 8.58rem;
+        height: 9.9775rem;
+      }
+    }
+    .lose {
+      background: url(./res/assets/sprites/s_result_ko.png) -26.195rem -0rem;
+      background-size: 35.23rem 20.0525rem;
+      position: absolute;
+      left: 4.6475rem;
+      top: 15.47rem;
+      width: 8.97rem;
+      height: 7.605rem;
+    }
+    .draw {
+      background: url(./res/assets/sprites/s_result_ko.png) -26.195rem -7.605rem;
+      background-size: 35.23rem 20.0525rem;
+      position: absolute;
+      left: 17.6474rem;
+      top: 15.47rem;
+      width: 8.97rem;
+      height: 7.5725rem;
+    }
   }
 }
