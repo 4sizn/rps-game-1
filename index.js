@@ -17,3 +17,15 @@ function gameStart() {
 }
 
 gameStart();
+
+class Machine {
+  constructor() {}
+  idle() {}
+  play() {
+    console.log("play");
+  }
+  end() {}
+}
+
+const _machine = new Machine();
+_machine.play();
