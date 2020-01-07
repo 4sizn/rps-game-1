@@ -41,13 +41,14 @@ class Game {
   constructor({ name }) {
     this._isPlay = false;
     this._name = name;
+    this._userEvents = [];
     this.start = this.start.bind(this);
     this.isPending = this.isPending.bind(this);
     this.loop = this.loop.bind(this);
   }
 
   isPending() {
-    return this.userEvents.length;
+    return this._userEvents.length;
   }
 
   loop() {
@@ -55,6 +56,11 @@ class Game {
     const { isPending, userEvents } = this;
     return function* loop() {
       while (this._isPlay) {
+        if (isPending()) {
+          const event = userEvents.shift();
+          yield* event();
+        }
+
         yield delay(1000).then(() => {
           console.log("abcd");
         });
@@ -82,18 +88,26 @@ class Game {
 }
 
 //not use Class shape, use function composition to make flexible interface in js
-function RpsCreator() {
+function RpsGameCreator() {
   const _state = { name: "rps" };
-  const game = new Game(_state);
+  let game = new Game(_state);
+
   return {
     ...game,
     // ...rps(state)
-    idle: function*() {},
+    idle: () => {
+      console.log("idle");
+    },
+    reset: () => {
+      game = new Game(_state);
+    },
     ...makeAnimation()
   };
 }
 
-function makeAnimation() {}
+function makeAnimation() {
+  function* animation() {}
+}
 //command Pattern
 class Machine {
   //게임 레트로 게임팩 고증화
@@ -115,7 +129,7 @@ class Machine {
   }
 }
 
-const _machine = new Machine(RpsCreator());
+const _machine = new Machine(RpsGameCreator());
 _machine.powerOn();
 _machine.powerOff();
 

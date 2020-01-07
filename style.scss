@@ -75,5 +75,49 @@ body {
   }
 
   .buttons {
+    .btn_scissors {
+      position: absolute;
+      left: 5.98rem;
+      top: 30.68rem;
+      width: 4.29rem;
+      height: 3.38rem;
+      padding: 0;
+      border: none;
+      background: url(./res/assets/sprites/s_game.png) -0.325rem -16.4775rem;
+      background-size: 31.1025rem 20.1825rem;
+    }
+    .btn_rock {
+      background: url(./res/assets/sprites/s_game.png) -20.67rem -10.9525rem;
+      background-size: 31.1025rem 20.1825rem;
+      position: absolute;
+      left: 11.8625rem;
+      top: 30.68rem;
+      width: 4.29rem;
+      height: 3.38rem;
+      padding: 0;
+      border: none;
+    }
+    .btn_paper {
+      background: url(./res/assets/sprites/s_game.png) -10.725rem -10.9525rem;
+      background-size: 31.1025rem 20.1825rem;
+      position: absolute;
+      left: 17.7125rem;
+      top: 30.68rem;
+      width: 4.3225rem;
+      height: 3.38rem;
+      padding: 0;
+      border: none;
+    }
+    .btn_power {
+      background: url(./res/assets/sprites/s_game.png) -0.325rem -10.9525rem;
+      background-size: 31.1025rem 20.1825rem;
+      position: absolute;
+      top: 29.25rem;
+      left: 23.7125rem;
+      width: 4.55rem;
+      height: 4.875rem;
+      padding: 0;
+      border: none;
+    }
   }
 }
