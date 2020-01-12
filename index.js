@@ -62,7 +62,7 @@ class Game {
         }
 
         yield delay(1000).then(() => {
-          console.log("abcd");
+          //   console.log("abcd");
         });
       }
     }.bind(this);
@@ -134,3 +134,21 @@ _machine.powerOn();
 _machine.powerOff();
 
 const gameEl = document.querySelector(".game");
+const btn_rock = document.querySelector(".btn_rock");
+const btn_paper = document.querySelector(".btn_paper");
+const btn_scissors = document.querySelector(".btn_scissors");
+const btn_power = document.querySelector(".btn_power");
+
+[btn_rock, btn_paper, btn_scissors, btn_power].forEach(el => {
+  el.addEventListener("mouseup", e => {
+    e.stopPropagation();
+    console.log("mouseup");
+    // el.classList.remove("active");
+  });
+
+  el.addEventListener("click", e => {
+    e.stopPropagation();
+    console.log("mousedown");
+    el.classList.add("active");
+  });
+});

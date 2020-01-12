@@ -55,6 +55,10 @@ body {
     background-size: 31.1025rem 20.1825rem;
 
     &.active {
+      padding: 0;
+      border: none;
+      background: url(./res/assets/sprites/s_game.png) -5.265rem -16.4775rem;
+      background-size: 31.1025rem 20.1825rem;
     }
   }
   .btn_rock {
@@ -69,6 +73,10 @@ body {
     border: none;
 
     &.active {
+      background: url(./res/assets/sprites/s_game.png) -25.61rem -10.9525rem;
+      background-size: 31.1025rem 20.1825rem;
+      padding: 0;
+      border: none;
     }
   }
   .btn_paper {
@@ -83,6 +91,10 @@ body {
     border: none;
 
     &.active {
+      background: url(./res/assets/sprites/s_game.png) -15.6975rem -10.9525rem;
+      background-size: 31.1025rem 20.1825rem;
+      padding: 0;
+      border: none;
     }
   }
   .btn_power {
@@ -98,6 +110,10 @@ body {
   }
 
   & .active {
+    background: url(./res/assets/sprites/s_game.png) -5.525rem -10.9525rem;
+    background-size: 31.1025rem 20.1825rem;
+    padding: 0;
+    border: none;
   }
 }
 
