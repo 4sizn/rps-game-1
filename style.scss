@@ -6,7 +6,7 @@ html {
 body {
   font-size: 1rem;
   font-family: "VT323", monospace;
-  background-color: rgb(94, 66, 66);
+  background-color: black;
   color: white;
 }
 
@@ -14,6 +14,7 @@ body {
   margin: 0 auto;
   max-width: 650px;
 }
+
 .game {
   position: relative;
   width: 100%;
@@ -26,98 +27,159 @@ body {
   background-image: url(./res/assets/m/imgs/gamebase.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
-  .game-machine__head {
+  .__head {
   }
-  .game-machine__body {
+  .__body {
   }
-  .game-machine__foot {
+  .__foot {
+    position: absolute;
+    width: 100%;
+    top: 36rem;
+    height: 300px;
+    background: url(./res//assets/m/imgs/footer_left.png) left top no-repeat,
+      url(./res//assets/m/imgs/footer_right.png) right top no-repeat;
+    background-size: 1.625rem 100%;
+  }
+}
+
+.buttons {
+  .btn_scissors {
+    position: absolute;
+    left: 5.98rem;
+    top: 30.68rem;
+    width: 4.29rem;
+    height: 3.38rem;
+    padding: 0;
+    border: none;
+    background: url(./res/assets/sprites/s_game.png) -0.325rem -16.4775rem;
+    background-size: 31.1025rem 20.1825rem;
+
+    &.active {
+    }
+  }
+  .btn_rock {
+    background: url(./res/assets/sprites/s_game.png) -20.67rem -10.9525rem;
+    background-size: 31.1025rem 20.1825rem;
+    position: absolute;
+    left: 11.8625rem;
+    top: 30.68rem;
+    width: 4.29rem;
+    height: 3.38rem;
+    padding: 0;
+    border: none;
+
+    &.active {
+    }
+  }
+  .btn_paper {
+    background: url(./res/assets/sprites/s_game.png) -10.725rem -10.9525rem;
+    background-size: 31.1025rem 20.1825rem;
+    position: absolute;
+    left: 17.7125rem;
+    top: 30.68rem;
+    width: 4.3225rem;
+    height: 3.38rem;
+    padding: 0;
+    border: none;
+
+    &.active {
+    }
+  }
+  .btn_power {
+    background: url(./res/assets/sprites/s_game.png) -0.325rem -10.9525rem;
+    background-size: 31.1025rem 20.1825rem;
+    position: absolute;
+    top: 29.25rem;
+    left: 23.7125rem;
+    width: 4.55rem;
+    height: 4.875rem;
+    padding: 0;
+    border: none;
   }
 
-  .result {
-    .win {
-      .left {
-        background: url(./res/assets/sprites/s_result_ko.png) -8.6125rem -9.9775rem;
-        background-size: 35.23rem 20.0525rem;
-        position: absolute;
-        left: 3.4125rem;
-        top: 3.6075rem;
-        width: 8.5475rem;
-        height: 10.01rem;
-      }
-      .right {
-        background: url(./res/assets/sprites/s_result_ko.png) -8.6125rem -0rem;
-        background-size: 35.23rem 20.0525rem;
-        position: absolute;
-        left: 19.2725rem;
-        top: 3.6075rem;
-        width: 8.58rem;
-        height: 9.9775rem;
-      }
-    }
-    .lose {
-      background: url(./res/assets/sprites/s_result_ko.png) -26.195rem -0rem;
-      background-size: 35.23rem 20.0525rem;
-      position: absolute;
-      left: 4.6475rem;
-      top: 15.47rem;
-      width: 8.97rem;
-      height: 7.605rem;
-    }
-    .draw {
-      background: url(./res/assets/sprites/s_result_ko.png) -26.195rem -7.605rem;
-      background-size: 35.23rem 20.0525rem;
-      position: absolute;
-      left: 17.6474rem;
-      top: 15.47rem;
-      width: 8.97rem;
-      height: 7.5725rem;
-    }
+  & .active {
+  }
+}
+
+.neon-hands {
+  & .__rock {
+    display: none;
+    background: url(./res/assets/sprites/s_game.png) -10.6925rem -0.325rem;
+    background-size: 31.1025rem 20.1825rem;
+    position: absolute;
+    left: 10.725rem;
+    top: 9.5225rem;
+    width: 9.7175rem;
+    height: 9.9775rem;
   }
 
-  .buttons {
-    .btn_scissors {
+  & .__paper {
+    display: none;
+    background: url(./res/assets/sprites/s_game.png) -0.325rem -0.325rem;
+    background-size: 31.1025rem 20.1825rem;
+    position: absolute;
+    left: 10.725rem;
+    top: 9.5225rem;
+    width: 9.7175em;
+    height: 9.9775rem;
+  }
+
+  & .__scissors {
+    display: none;
+    background: url(./res/assets/sprites/s_game.png) -21.06rem -0.325rem;
+    background-size: 31.1025rem 20.1825rem;
+    position: absolute;
+    left: 10.725rem;
+    top: 9.5225rem;
+    width: 9.7175em;
+    height: 9.9775rem;
+  }
+  & .active {
+    display: block;
+  }
+}
+
+.roulette {
+}
+
+.game-result {
+  .win {
+    .left {
+      background: url(./res/assets/sprites/s_result_ko.png) -8.6125rem -9.9775rem;
+      background-size: 35.23rem 20.0525rem;
       position: absolute;
-      left: 5.98rem;
-      top: 30.68rem;
-      width: 4.29rem;
-      height: 3.38rem;
-      padding: 0;
-      border: none;
-      background: url(./res/assets/sprites/s_game.png) -0.325rem -16.4775rem;
-      background-size: 31.1025rem 20.1825rem;
+      left: 3.4125rem;
+      top: 3.6075rem;
+      width: 8.5475rem;
+      height: 10.01rem;
     }
-    .btn_rock {
-      background: url(./res/assets/sprites/s_game.png) -20.67rem -10.9525rem;
-      background-size: 31.1025rem 20.1825rem;
+    .right {
+      background: url(./res/assets/sprites/s_result_ko.png) -8.6125rem -0rem;
+      background-size: 35.23rem 20.0525rem;
       position: absolute;
-      left: 11.8625rem;
-      top: 30.68rem;
-      width: 4.29rem;
-      height: 3.38rem;
-      padding: 0;
-      border: none;
+      left: 19.2725rem;
+      top: 3.6075rem;
+      width: 8.58rem;
+      height: 9.9775rem;
     }
-    .btn_paper {
-      background: url(./res/assets/sprites/s_game.png) -10.725rem -10.9525rem;
-      background-size: 31.1025rem 20.1825rem;
-      position: absolute;
-      left: 17.7125rem;
-      top: 30.68rem;
-      width: 4.3225rem;
-      height: 3.38rem;
-      padding: 0;
-      border: none;
-    }
-    .btn_power {
-      background: url(./res/assets/sprites/s_game.png) -0.325rem -10.9525rem;
-      background-size: 31.1025rem 20.1825rem;
-      position: absolute;
-      top: 29.25rem;
-      left: 23.7125rem;
-      width: 4.55rem;
-      height: 4.875rem;
-      padding: 0;
-      border: none;
-    }
+  }
+  .lose {
+    background: url(./res/assets/sprites/s_result_ko.png) -26.195rem -0rem;
+    background-size: 35.23rem 20.0525rem;
+    position: absolute;
+    left: 4.6475rem;
+    top: 15.47rem;
+    width: 8.97rem;
+    height: 7.605rem;
+  }
+
+  .draw {
+    background: url(./res/assets/sprites/s_result_ko.png) -26.195rem -7.605rem;
+    background-size: 35.23rem 20.0525rem;
+    position: absolute;
+    left: 17.6474rem;
+    top: 15.47rem;
+    width: 8.97rem;
+    height: 7.5725rem;
   }
 }
