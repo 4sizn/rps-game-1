@@ -146,22 +146,29 @@ const _machine = new Machine({
 
 _machine.powerOn();
 _machine.powerOff();
-
+debugger;
 const gameEl = document.querySelector(".game");
 const btn_rock = document.querySelector(".btn_rock");
 const btn_paper = document.querySelector(".btn_paper");
 const btn_scissors = document.querySelector(".btn_scissors");
 const btn_power = document.querySelector(".btn_power");
+const neon_handsEl = document.querySelector(".neon-hands");
+const cur = 0;
+setInterval(() => {
+  [...neon_handsEl.children].forEach(hand => {
+    // hand.classList.remove("active");
+  });
+}, 1000);
 
 window.addEventListener("keydown", e => {
   if (e.key === "q") {
-    console.log("w");
+    btn_rock.click();
   }
   if (e.key === "w") {
-    console.log("w");
+    btn_rock.click();
   }
   if (e.key === "e") {
-    console.log("e");
+    btn_rock.click();
   }
   if (e.key === "r") {
     _machine.powerOff();
@@ -173,14 +180,12 @@ window.addEventListener("keydown", e => {
 
 [btn_rock, btn_paper, btn_scissors, btn_power].forEach(el => {
   el.addEventListener("mouseup", e => {
-    e.stopPropagation();
     console.log("mouseup");
     el.classList.remove("active");
   });
 
-  //   el.addEventListener("click", e => {
-  //     e.stopPropagation();
-  //     console.log("mousedown");
-  //     el.classList.add("active");
-  //   });
+  el.addEventListener("mousedown", e => {
+    console.log("mousedown");
+    el.classList.add("active");
+  });
 });
