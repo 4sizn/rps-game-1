@@ -1,8 +1,10 @@
 const rps_game = require("rps-game");
 const { HAND, RESULT, game, getGameResult, makePlayer } = rps_game;
+
+import roulette_end_audio from "./res/assets/sound/roulette_end.mp3";
+import rps_audio from "./res/assets/sound/rps.mp3";
 import { coroutine, defer } from "./helper";
 
-//will update in library
 const makeComputers = n => {
   const players = [];
   for (let i = 0; i < n; i++) {
@@ -24,18 +26,6 @@ function delay(ms) {
 }
 
 gameStart();
-
-class Commnad {
-  constructor() {}
-}
-
-class ICommandBehavior {
-  execute() {
-    console.log("구현하세요");
-  }
-}
-
-function controller() {}
 
 class Game {
   constructor({ name }) {
@@ -96,19 +86,39 @@ function RpsGameCreator() {
     ...game,
     // ...rps(state)
     idle: () => {
-      console.log("idle");
+      function* animation() {
+        yield* raise("ROCK");
+        yield* raise("PAPER");
+        yield* raise("SCISSORS");
+      }
     },
+
+    shuffle: () => {
+      function* animation() {
+        yield* raise("ROCK");
+        yield* raise("PAPER");
+        yield* raise("SCISSORS");
+      }
+    },
+
+    roullete: () => {
+      //   const _audio = new Audio();
+      //   _audio.src = rps_audio;
+      //   _audio.play();
+    },
+
+    win: () => {
+      function* animation() {
+        yield* roullete();
+      }
+    },
+
     reset: () => {
       game = new Game(_state);
-    },
-    ...makeAnimation()
+    }
   };
 }
 
-function makeAnimation() {
-  function* animation() {}
-}
-//command Pattern
 class Machine {
   //게임 레트로 게임팩 고증화
   constructor(g) {
@@ -121,6 +131,7 @@ class Machine {
     console.log("Machine, powerOn");
     this._isPower = true;
     this._game.start();
+    this._game.roullete();
   }
 
   powerOff() {
@@ -129,7 +140,10 @@ class Machine {
   }
 }
 
-const _machine = new Machine(RpsGameCreator());
+const _machine = new Machine({
+  ...RpsGameCreator()
+});
+
 _machine.powerOn();
 _machine.powerOff();
 
@@ -139,16 +153,34 @@ const btn_paper = document.querySelector(".btn_paper");
 const btn_scissors = document.querySelector(".btn_scissors");
 const btn_power = document.querySelector(".btn_power");
 
+window.addEventListener("keydown", e => {
+  if (e.key === "q") {
+    console.log("w");
+  }
+  if (e.key === "w") {
+    console.log("w");
+  }
+  if (e.key === "e") {
+    console.log("e");
+  }
+  if (e.key === "r") {
+    _machine.powerOff();
+    setTimeout(() => {
+      _machine.powerOn();
+    }, 3000);
+  }
+});
+
 [btn_rock, btn_paper, btn_scissors, btn_power].forEach(el => {
   el.addEventListener("mouseup", e => {
     e.stopPropagation();
     console.log("mouseup");
-    // el.classList.remove("active");
+    el.classList.remove("active");
   });
 
-  el.addEventListener("click", e => {
-    e.stopPropagation();
-    console.log("mousedown");
-    el.classList.add("active");
-  });
+  //   el.addEventListener("click", e => {
+  //     e.stopPropagation();
+  //     console.log("mousedown");
+  //     el.classList.add("active");
+  //   });
 });
