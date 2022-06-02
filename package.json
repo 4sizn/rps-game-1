@@ -1,24 +1,14 @@
 {
   "name": "rps-game",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "clear": "^0.1.0",
-    "keypress": "^0.2.1",
-    "lodash": "^4.17.15",
-    "meow": "^5.0.0",
-    "rps-game": "^1.0.3"
-  },
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "build": "parcel build index.html",
-    "start": "parcel serve index.html",
-    "example": "node example.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-alpha.3.2",
-    "sass": "^1.23.7"
-  },
-  "repository": "https://github.com/4sizn/rps-game.git",
-  "author": "4sizn <4sizn@naver.com>"
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9"
+  }
 }
