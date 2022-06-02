@@ -18,5 +18,7 @@
   "devDependencies": {
     "parcel": "^2.0.0-alpha.3.2",
     "sass": "^1.23.7"
-  }
+  },
+  "repository": "https://github.com/4sizn/rps-game.git",
+  "author": "4sizn <4sizn@naver.com>"
 }
